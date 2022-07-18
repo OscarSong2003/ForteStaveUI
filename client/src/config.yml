@@ -1,0 +1,16 @@
+---
+  input: "text"
+  remotes: 
+    - remote1: 
+        name: "text processor"
+        url: "localhost:2000"
+    - remote2: 
+        name: "name entity processor"
+        url: "localhost:3000"
+    - remote3: 
+        name: "tokenizer"
+        url: "localhost:4000"
+  modifiers:
+    - mod1: 
+        name: "transcription corrector"
+        remoteNum: 1

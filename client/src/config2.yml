@@ -1,0 +1,20 @@
+---
+  name: "test pipeline 1"
+  components: 
+    - type: "input"
+      number: 1
+      name: "text input"
+    - type: "remote"
+      number: 1
+      name: "text processor"
+      url: "localhost:2000"
+    - type: "modifier"
+      remoteNum: 1
+      name: "transcription corrector"
+    - type: "remote"
+      number: 2
+      name: "name entity processor"
+      url: "localhost:3000"
+    - type: "output"
+      number: 1
+      name: "final output"
