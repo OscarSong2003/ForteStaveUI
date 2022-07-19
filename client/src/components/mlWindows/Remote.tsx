@@ -29,9 +29,7 @@ const Remote = ({pipelineUrl, dataPack, onPackChange, disable, setCurrentStatus}
         }); 
         onPackChange(response.data);
         console.log('response remote', response);
-        console.log('data', response.data)
-
-       
+        console.log('data', response.data);
         const textRes = await axios.post('http://127.0.0.1:8000/backend/getText', {
             pack: dataPack
         })
