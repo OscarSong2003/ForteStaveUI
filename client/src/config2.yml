@@ -7,7 +7,7 @@
     - type: "remote"
       number: 1
       name: "text processor"
-      url: "localhost:2000"
+      url: "http://localhost:9000"
     - type: "modifier"
       remoteNum: 1
       name: "transcription corrector"

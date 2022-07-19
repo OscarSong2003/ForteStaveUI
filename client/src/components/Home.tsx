@@ -20,6 +20,7 @@ const Home = ({ components, name} : HomeProps) => {
     const [properLayout, setProperLayout] = useState<any[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [pack, setPack] = useState({});
+    const [status, setStatus] = useState(0);
     // get new data pack 
     useEffect(() => {
         initPack(); 
@@ -29,6 +30,10 @@ const Home = ({ components, name} : HomeProps) => {
         let response = await axios.get('http://127.0.0.1:8000/backend/newPack');
         console.log('reponse', response);
         setPack(response.data);
+    }
+    
+    const onPackChange = (pack: any) => { 
+        setPack(pack);
     }
 
     // setup layout
@@ -49,6 +54,10 @@ const Home = ({ components, name} : HomeProps) => {
 
     const onLoading = () => {
         setIsLoading(true);
+    }
+
+    const setCurrentStatus = () => {
+        setStatus(status + 1);
     }
     // const layout = [
     //     { i: "a", x: 0, y: 0, w: 1, h: 2},
@@ -72,11 +81,11 @@ const Home = ({ components, name} : HomeProps) => {
                          <Box 
                          border="4px"
                          key={l.i}>
-                            <Component info={comp[index]} dataPack={pack}/>
-
+                            <Component info={comp[index]} dataPack={pack}
+                             onPackChange={onPackChange} setCurrentStatus={setCurrentStatus} 
+                             compNum={index} currentStatus={status}/>
                          </Box>
                          
-                        
                     )) }
                 </GridLayout>
             </PageLayout>
