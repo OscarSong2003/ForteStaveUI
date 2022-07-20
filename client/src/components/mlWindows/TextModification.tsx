@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Textarea, Button, Center } from "@chakra-ui/react";
+import { Box, Textarea, Button, Center, Heading } from "@chakra-ui/react";
 import axios from 'axios';
 import NotAvailable from "./NotAvailable";
 
@@ -9,9 +9,12 @@ type TextModificationProps = {
     disable: boolean,
     setCurrentStatus: () => void,
     past: boolean,
+    compNum: number,
+    name: string
 }
 
-const TextModification = ({ dataPack, onPackChange, disable, setCurrentStatus, past }: TextModificationProps): React.ReactElement => {
+const TextModification = ({ dataPack, onPackChange, disable, setCurrentStatus, past,
+                            compNum, name }: TextModificationProps): React.ReactElement => {
     let [value, setValue] = useState("");
     // let [initText, setInitText] = useState("");
 
@@ -49,20 +52,23 @@ const TextModification = ({ dataPack, onPackChange, disable, setCurrentStatus, p
     if (!disable || past) {
             return (
                 <Box h="100%" bg='white'>
-                     <Textarea 
+                    <Center height="12%">
+                        <Heading size="sm">{compNum + 1}: {name}</Heading>
+                    </Center>
+                    <Textarea 
                         value={value}
                         onChange={onInputChange}
                         placeholder='Modify text here'
                         size='lg'
-                        height="80%"
+                        height="75%"
                         isDisabled={disable}
                     />
-                    <Button disabled={disable} onClick={()=>onSubmit()}>Modify</Button>
+                    <Button height="13%" disabled={disable} onClick={()=>onSubmit()}>Modify</Button>
                 </Box>
             )
     } else {
         return (
-            <NotAvailable />
+            <NotAvailable compNum={compNum} name={name} />
         )
     }
     

@@ -1,15 +1,18 @@
 import React, { useState } from "react";
-import { Box, Button, Input } from "@chakra-ui/react";
+import { Box, Button, Heading, Input, Center } from "@chakra-ui/react";
 import { Textarea  } from "@chakra-ui/react";
 import axios from 'axios';
 
 type TextInputProps = {
+    name: string,
     dataPack: any,
     onPackChange: (pack: any) => void,
     disable: boolean,
     setCurrentStatus: () => void,
+    compNum: number
 }
-const TextInput = ({ dataPack, onPackChange, disable, setCurrentStatus} : TextInputProps): React.ReactElement => {
+const TextInput = ({ name, dataPack, onPackChange, disable, setCurrentStatus, 
+                     compNum} : TextInputProps): React.ReactElement => {
     let [value, setValue] = useState("");
     let [submitted, setSubmitted] = useState(false);
     const onInputChange = (e: any) => {
@@ -31,15 +34,18 @@ const TextInput = ({ dataPack, onPackChange, disable, setCurrentStatus} : TextIn
     }
     return (
         <Box h="100%" bg='white'>
+            <Center height="12%">
+                <Heading size="sm">{compNum + 1}: {name}</Heading>
+            </Center>
             <Textarea 
                 value={value}
                 onChange={onInputChange}
                 placeholder='Enter text here'
                 size='lg'
-                height="80%"
+                height="75%"
                 isDisabled={disable}
              />
-             <Button disabled={disable} onClick={()=>onSubmit()}>Submit</Button>
+             <Button height="13%" disabled={disable} onClick={()=>onSubmit()}>Submit</Button>
         </Box>
     )
 }

@@ -20,22 +20,24 @@ const Component = ({ info, dataPack, onPackChange, currentStatus,
     switch(compInfo.type) {
         case "input":
             return (<TextInput disable={(compNum == currentStatus) ? false : true} 
-                    onPackChange={onPackChange} dataPack={dataPack} setCurrentStatus={setCurrentStatus}/>);
+                    onPackChange={onPackChange} dataPack={dataPack} setCurrentStatus={setCurrentStatus}
+                    name={compInfo.name} compNum={compNum} />);
+
         case "remote":
             return (<Remote pipelineUrl={compInfo.url} dataPack={dataPack} onPackChange={onPackChange}
                     disable={(compNum === currentStatus) ? false : true} 
-                    setCurrentStatus={setCurrentStatus} past={currentStatus > compNum}/>);
+                    setCurrentStatus={setCurrentStatus} past={currentStatus > compNum}
+                    name={compInfo.name} compNum={compNum}/>);
         case "modifier":
             return (<TextModification dataPack={dataPack} onPackChange={onPackChange} 
                     disable={(compNum === currentStatus) ? false : true} setCurrentStatus={setCurrentStatus}
-                    past={currentStatus > compNum} />)
+                    past={currentStatus > compNum} compNum={compNum} name={compInfo.name} />)
         case "output":
             return (<StaveOutput dataPack={dataPack} disable={(compNum === currentStatus) ? false : true} 
-                    setCurrentStatus={setCurrentStatus} />)
+                    setCurrentStatus={setCurrentStatus} compNum={compNum} name={compInfo.name} />)
     }
 
-    const setOnLoad = () => { setIsLoading(true); }
-    return (<LoadingPage onLoading={setOnLoad}/>);
+    return (<LoadingPage />);
 
 }
 

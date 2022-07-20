@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PageLayout from './common/PageLayout'
-import { Center } from '@chakra-ui/react';
+import { Center, Button } from '@chakra-ui/react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
@@ -23,7 +23,8 @@ const UploadConfig = ({setConfigs} : UploadConfigProps) => {
         <PageLayout>
             <Center height="100vh">
                 <input type="file" onChange={onFileChange}></input>
-                <button onClick={onUpload}>Upload</button>
+                <Button onClick={()=>onUpload()}>Click To Upload Yaml Config File</Button>
+                {/* <button onClick={onUpload}>Please Upload Your Yaml Config File</button> */}
             </Center>
         </PageLayout> 
     )

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import { Box, Text, Button, Center} from "@chakra-ui/react";
+import { Box, Text, Button, Center, Heading, Divider} from "@chakra-ui/react";
 import NotAvailable from "./NotAvailable";
 
 type RemoteProps = {
@@ -10,9 +10,12 @@ type RemoteProps = {
     disable: boolean,
     setCurrentStatus: () => void,
     past: boolean, 
+    name: string,
+    compNum: number
 }
 
-const Remote = ({pipelineUrl, dataPack, onPackChange, disable, setCurrentStatus, past}: RemoteProps) => {
+const Remote = ({pipelineUrl, dataPack, onPackChange, disable, setCurrentStatus, past,
+                 name, compNum}: RemoteProps) => {
     const [ url, setUrl ] = useState(pipelineUrl);
     const [ text, setText ] = useState("");
     const [ currPack, setCurrPack ] = useState("");
@@ -45,6 +48,10 @@ const Remote = ({pipelineUrl, dataPack, onPackChange, disable, setCurrentStatus,
         if (text) {
             return (
                 <Box overflow="auto" h="100%" bg='white' p={2} pb={0}>
+                    <Center height="12%">
+                        <Heading size="sm">{compNum + 1}: {name}</Heading>
+                    </Center>
+                    <Divider orientation="horizontal" borderColor="gray.200" borderWidth="1px" />
                     <Text>Text: {text}</Text>
                     <Text mt={3}>DataPack: {currPack}</Text>
                     <Button mt={5} onClick={setCurrentStatus}>Continue</Button>
@@ -61,14 +68,22 @@ const Remote = ({pipelineUrl, dataPack, onPackChange, disable, setCurrentStatus,
         if (past) {
             return (
                 <Box overflow="auto" h="100%" bg='white' p={2} pb={0}>
-                    <Text>Text: {text}</Text>
-                    <Text mt={3}>DataPack: {currPack}</Text>
-                    <Button disabled={true} mt={5}>Continue</Button>
+                    <Center height="8%">
+                        <Heading size="sm">{compNum + 1}: {name}</Heading>
+                    </Center>
+                    <Box overflow="auto" height="82%"> 
+                        <Divider my={2} orientation="horizontal" borderColor="gray.100" />
+                        <Text><Text fontWeight="bold">Text:</Text>{text}</Text>
+                        <Divider my={2} orientation="horizontal" borderColor="gray.100" />
+                        <Text mt={3} height="40%"><Text fontWeight="bold">DataPack:</Text>{currPack}</Text>
+                    </Box>
+                    <Divider my={2} orientation="horizontal" borderColor="gray.100" />
+                    <Button height="12%" disabled={true}>Continue</Button>
                 </Box>
             )
         } else {
             return (
-                <NotAvailable />
+                <NotAvailable compNum={compNum} name={name}/>
             )
         }
         

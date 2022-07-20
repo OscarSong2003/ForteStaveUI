@@ -1,18 +1,13 @@
 import React, { useEffect } from "react";
 import PageLayout from "./PageLayout";
-import { Flex, Spinner, Image } from "@chakra-ui/react";
+import { Flex, Spinner, Image, Center, Heading } from "@chakra-ui/react";
 
-type LoadingPageProps = {
-    onLoading: () => void;
-}
-const LoadingPage = ({onLoading} : LoadingPageProps): React.ReactElement => {
-    useEffect(() => {
-        onLoading();
-    })
+
+const LoadingPage = (): React.ReactElement => {
     return (
         <PageLayout>
             <Flex w="100%"
-                  h="100vh"
+                  h="100%"
                   direction="row"
                   alignItems="center"
                   justifyContent="center"
@@ -23,13 +18,9 @@ const LoadingPage = ({onLoading} : LoadingPageProps): React.ReactElement => {
                     emptyColor='gray.200'
                     color='blue.500'
                     size='xl'
-                    mr="60px"
+                    mr="80px"
                 />
-                <Image 
-                    width={850}
-                    alt="loading profile"
-                    mb={8}
-                />
+                <Heading>Loading...</Heading>
             </Flex>
         </PageLayout>
     )

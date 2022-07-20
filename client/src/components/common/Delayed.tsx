@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import NotAvailable from "../mlWindows/NotAvailable";
-
+import Loading from "../common/Loading";
 type DelayedProps = {
     children: React.ReactElement;
 }
@@ -14,7 +14,7 @@ const Delayed = ({ children } : DelayedProps): React.ReactElement => {
         }, waitTime);
     }, [waitTime]);
 
-    return (isShown ? children : <NotAvailable />);
+    return (isShown ? children : <Loading />);
 }
 
 export default Delayed;
