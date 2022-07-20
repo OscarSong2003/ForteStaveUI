@@ -8,9 +8,10 @@ type TextModificationProps = {
     onPackChange: (pack: any) => void
     disable: boolean,
     setCurrentStatus: () => void,
+    past: boolean,
 }
 
-const TextModification = ({ dataPack, onPackChange, disable, setCurrentStatus }: TextModificationProps): React.ReactElement => {
+const TextModification = ({ dataPack, onPackChange, disable, setCurrentStatus, past }: TextModificationProps): React.ReactElement => {
     let [value, setValue] = useState("");
     // let [initText, setInitText] = useState("");
 
@@ -45,7 +46,7 @@ const TextModification = ({ dataPack, onPackChange, disable, setCurrentStatus }:
         setCurrentStatus();
     }
     // render modification 
-    if (!disable) {
+    if (!disable || past) {
             return (
                 <Box h="100%" bg='white'>
                      <Textarea 

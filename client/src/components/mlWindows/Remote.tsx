@@ -9,9 +9,10 @@ type RemoteProps = {
     onPackChange: (pack: any) => void
     disable: boolean,
     setCurrentStatus: () => void,
+    past: boolean, 
 }
 
-const Remote = ({pipelineUrl, dataPack, onPackChange, disable, setCurrentStatus}: RemoteProps) => {
+const Remote = ({pipelineUrl, dataPack, onPackChange, disable, setCurrentStatus, past}: RemoteProps) => {
     const [ url, setUrl ] = useState(pipelineUrl);
     const [ text, setText ] = useState("");
     const [ currPack, setCurrPack ] = useState("");
@@ -43,7 +44,7 @@ const Remote = ({pipelineUrl, dataPack, onPackChange, disable, setCurrentStatus}
     if (!disable) {
         if (text) {
             return (
-                <Box h="100%" bg='white' p={2} pb={0}>
+                <Box overflow="auto" h="100%" bg='white' p={2} pb={0}>
                     <Text>Text: {text}</Text>
                     <Text mt={3}>DataPack: {currPack}</Text>
                     <Button mt={5} onClick={setCurrentStatus}>Continue</Button>
@@ -57,9 +58,20 @@ const Remote = ({pipelineUrl, dataPack, onPackChange, disable, setCurrentStatus}
             )
         }
     } else {
-        return (
-            <NotAvailable />
-        )
+        if (past) {
+            return (
+                <Box overflow="auto" h="100%" bg='white' p={2} pb={0}>
+                    <Text>Text: {text}</Text>
+                    <Text mt={3}>DataPack: {currPack}</Text>
+                    <Button disabled={true} mt={5}>Continue</Button>
+                </Box>
+            )
+        } else {
+            return (
+                <NotAvailable />
+            )
+        }
+        
     }
 }
 

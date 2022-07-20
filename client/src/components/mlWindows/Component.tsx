@@ -24,10 +24,11 @@ const Component = ({ info, dataPack, onPackChange, currentStatus,
         case "remote":
             return (<Remote pipelineUrl={compInfo.url} dataPack={dataPack} onPackChange={onPackChange}
                     disable={(compNum === currentStatus) ? false : true} 
-                    setCurrentStatus={setCurrentStatus}/>);
+                    setCurrentStatus={setCurrentStatus} past={currentStatus > compNum}/>);
         case "modifier":
             return (<TextModification dataPack={dataPack} onPackChange={onPackChange} 
-                    disable={(compNum === currentStatus) ? false : true} setCurrentStatus={setCurrentStatus} />)
+                    disable={(compNum === currentStatus) ? false : true} setCurrentStatus={setCurrentStatus}
+                    past={currentStatus > compNum} />)
         case "output":
             return (<StaveOutput dataPack={dataPack} disable={(compNum === currentStatus) ? false : true} 
                     setCurrentStatus={setCurrentStatus} />)
