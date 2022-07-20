@@ -14,7 +14,7 @@
     - type: "remote"
       number: 2
       name: "name entity processor"
-      url: "localhost:3000"
+      url: "http://localhost:9001"
     - type: "output"
       number: 1
       name: "final output"

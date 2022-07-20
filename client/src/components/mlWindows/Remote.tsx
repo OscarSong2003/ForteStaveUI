@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import { Box } from "@chakra-ui/react";
+import { Box, Text, Button, Center} from "@chakra-ui/react";
+import NotAvailable from "./NotAvailable";
 
 type RemoteProps = {
     pipelineUrl: string,
@@ -13,6 +14,7 @@ type RemoteProps = {
 const Remote = ({pipelineUrl, dataPack, onPackChange, disable, setCurrentStatus}: RemoteProps) => {
     const [ url, setUrl ] = useState(pipelineUrl);
     const [ text, setText ] = useState("");
+    const [ currPack, setCurrPack ] = useState("");
     useEffect(() => {
         setUrl(pipelineUrl);
         if (!disable) {
@@ -27,20 +29,24 @@ const Remote = ({pipelineUrl, dataPack, onPackChange, disable, setCurrentStatus}
             url: url, 
             pack: dataPack
         }); 
+        console.log('type of res.data', typeof(response.data))
+        console.log('type of res.datapack', typeof(dataPack))
         onPackChange(response.data);
         console.log('response remote', response);
         console.log('data', response.data);
         const textRes = await axios.post('http://127.0.0.1:8000/backend/getText', {
-            pack: dataPack
+            pack: response.data
         })
         setText(textRes.data);
-        
+        setCurrPack(response.data);
     }
     if (!disable) {
         if (text) {
             return (
-                <Box h="100%" bg='white'>
-                    {text}
+                <Box h="100%" bg='white' p={2} pb={0}>
+                    <Text>Text: {text}</Text>
+                    <Text mt={3}>DataPack: {currPack}</Text>
+                    <Button mt={5} onClick={setCurrentStatus}>Continue</Button>
                 </Box>
             )
         } else {
@@ -52,9 +58,7 @@ const Remote = ({pipelineUrl, dataPack, onPackChange, disable, setCurrentStatus}
         }
     } else {
         return (
-            <Box h="100%" bg='gray'>
-                nope
-            </Box>
+            <NotAvailable />
         )
     }
 }

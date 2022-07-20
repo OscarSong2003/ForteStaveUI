@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import LoadingPage from "../common/Loading";
 import TextInput from "./TextInput";
 import Remote from "./Remote";
+import TextModification from "./TextModification";
+import StaveOutput from "./StaveOutput";
 type ComponentProps = {
     info: any,
     dataPack: any, 
@@ -21,9 +23,14 @@ const Component = ({ info, dataPack, onPackChange, currentStatus,
                     onPackChange={onPackChange} dataPack={dataPack} setCurrentStatus={setCurrentStatus}/>);
         case "remote":
             return (<Remote pipelineUrl={compInfo.url} dataPack={dataPack} onPackChange={onPackChange}
-                    disable={(compNum == currentStatus) ? false : true} 
+                    disable={(compNum === currentStatus) ? false : true} 
                     setCurrentStatus={setCurrentStatus}/>);
-
+        case "modifier":
+            return (<TextModification dataPack={dataPack} onPackChange={onPackChange} 
+                    disable={(compNum === currentStatus) ? false : true} setCurrentStatus={setCurrentStatus} />)
+        case "output":
+            return (<StaveOutput dataPack={dataPack} disable={(compNum === currentStatus) ? false : true} 
+                    setCurrentStatus={setCurrentStatus} />)
     }
 
     const setOnLoad = () => { setIsLoading(true); }

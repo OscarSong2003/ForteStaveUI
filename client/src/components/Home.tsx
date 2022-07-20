@@ -19,7 +19,7 @@ const Home = ({ components, name} : HomeProps) => {
     const [layout, setLayout] = useState<any[]>([]);
     const [properLayout, setProperLayout] = useState<any[]>([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [pack, setPack] = useState({});
+    const [pack, setPack] = useState("");
     const [status, setStatus] = useState(0);
     // get new data pack 
     useEffect(() => {
@@ -32,8 +32,10 @@ const Home = ({ components, name} : HomeProps) => {
         setPack(response.data);
     }
     
-    const onPackChange = (pack: any) => { 
+    const onPackChange = async (pack: any) => { 
+        console.log('type of pack', typeof(pack));
         setPack(pack);
+        console.log('PACK CHANGED: ', pack);
     }
 
     // setup layout
@@ -50,7 +52,7 @@ const Home = ({ components, name} : HomeProps) => {
         const properLayout = layout.slice(0, comp.length);
         setProperLayout(properLayout);
         console.log('layout', properLayout)
-    }, [])
+    }, [comp])
 
     const onLoading = () => {
         setIsLoading(true);
