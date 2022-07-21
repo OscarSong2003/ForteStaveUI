@@ -1,6 +1,6 @@
 # ForteStaveUI
 
-An application that help facilitate and streamline the process of natural language processing/machine learning processes.
+An application that help facilitate and streamline basic natural language processing/machine learning processes.
 
 # Demonstration 
 
@@ -9,7 +9,8 @@ A quick video demo is available here: https://drive.google.com/file/d/1DNjq7KPCJ
 # Tools used
 
 The front-end is written in React, and the backend is written in Django. Two machine learning libraries are employed: Forte and Stave, 
-which this project is also primarily made for. The remote processing is conducted in Forte, and the final rendering is writtne in Stave.
+which this project is also primarily made for. The remote processing is conducted in Forte, and the final rendering uses Stave's annotation
+tool. The processors are written in Python. 
 
 # General Application Flow
 1) Users will first upload a config yaml file which specifies both the input, output, and intermediary processing components
