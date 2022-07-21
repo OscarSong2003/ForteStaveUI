@@ -4,7 +4,7 @@ An application that help facilitate and streamline the process of natural langua
 
 # Demonstration 
 
-A quick video demo here: https://drive.google.com/file/d/1DNjq7KPCJaYCWUPN9VucaKZy6kYJRYqL/view?usp=sharing. 
+A quick video demo is available here: https://drive.google.com/file/d/1DNjq7KPCJaYCWUPN9VucaKZy6kYJRYqL/view?usp=sharing. 
 
 # Tools used
 
