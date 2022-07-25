@@ -4,7 +4,7 @@ An application that help facilitate and streamline basic natural language proces
 
 # Demonstration 
 
-A quick video demo is available here: https://drive.google.com/file/d/1DNjq7KPCJaYCWUPN9VucaKZy6kYJRYqL/view?usp=sharing. 
+A quick video demo is available here: https://drive.google.com/file/d/1DNjq7KPCJaYCWUPN9VucaKZy6kYJRYqL/view?usp=sharing (fallback: https://youtu.be/GvS-qwK28wo). 
 
 # Tools used
 
